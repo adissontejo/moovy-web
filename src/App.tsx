@@ -1,27 +1,33 @@
 import React from 'react';
+import { Stack, ThemeProvider, Typography } from '@mui/material';
 
-import logo from '~/logo.svg';
-import './App.css';
+import '~/styles/global.css';
 
-function App() {
+import { Header } from './components';
+import { Router } from './routes';
+import { theme } from './styles';
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <Stack
+        padding={4}
+        direction="row"
+        height="100vw"
+        bgcolor="background.default"
+      >
+        <Stack marginRight={16} height={24} direction="row" alignItems="center">
+          <Typography variant="h1" color="primary.main">
+            Moovy
+          </Typography>
+        </Stack>
+        <Stack>
+          <Header />
+          <Router />
+        </Stack>
+      </Stack>
+    </ThemeProvider>
   );
-}
+};
 
 export default App;
