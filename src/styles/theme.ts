@@ -17,13 +17,30 @@ export const theme = createTheme({
       fontSize: 25,
       fontWeight: 400,
     },
+    body1: {
+      fontSize: 16,
+      fontWeight: 400,
+    },
+    button: {
+      fontSize: 16,
+      fontWeight: 400,
+      textTransform: 'none',
+      color: 'rgba(0, 0, 0, 0.5)',
+    },
   },
   palette: {
     background: {
       default: '#DCE0E2',
     },
+    text: {
+      primary: '#F2911B',
+      secondary: '#434670',
+    },
     primary: {
-      main: '#F2911B',
+      main: '#FE6D8E',
+    },
+    secondary: {
+      main: '#0ACF83',
     },
   },
 });

@@ -17,11 +17,11 @@ const App = () => {
         bgcolor="background.default"
       >
         <Stack marginRight={16} height={24} direction="row" alignItems="center">
-          <Typography variant="h1" color="primary.main">
+          <Typography variant="h1" color="text.primary">
             Moovy
           </Typography>
         </Stack>
-        <Stack>
+        <Stack sx={{ flex: 1 }}>
           <Header />
           <Router />
         </Stack>

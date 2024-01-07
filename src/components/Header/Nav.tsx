@@ -11,12 +11,13 @@ export const Nav = ({ children, path }: NavProps) => {
   const { pathname } = useLocation();
 
   return (
-    <Typography
-      variant="h3"
-      component="nav"
-      color={pathname === path ? 'primary.main' : 'black'}
-    >
-      <Link to={path}>{children}</Link>
-    </Typography>
+    <Link to={path} style={{ textDecoration: 'none' }}>
+      <Typography
+        variant="h3"
+        color={pathname === path ? 'text.primary' : 'black'}
+      >
+        {children}
+      </Typography>
+    </Link>
   );
 };
