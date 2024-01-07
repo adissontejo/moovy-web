@@ -13,7 +13,7 @@ const App = () => {
       <Stack
         padding={4}
         direction="row"
-        height="100vw"
+        minHeight="100vh"
         bgcolor="background.default"
       >
         <Stack marginRight={16} height={24} direction="row" alignItems="center">

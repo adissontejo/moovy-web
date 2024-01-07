@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Button,
   Card,
@@ -12,14 +12,44 @@ import {
 
 import { ReactComponent as BooksIcon } from '~/assets/books.svg';
 import { ReactComponent as StarIcon } from '~/assets/star.svg';
+import { unsaveMovie, saveMovie } from '~/services/movies';
 import type { Movie } from '~/types/api';
 
 export interface MovieCardProps {
   movie: Movie;
   isSaved: boolean;
+  onSave?: () => void;
+  onUnsave?: () => void;
 }
 
-export const MovieCard = ({ movie, isSaved }: MovieCardProps) => {
+export const MovieCard = ({
+  movie,
+  isSaved,
+  onSave,
+  onUnsave,
+}: MovieCardProps) => {
+  const [saved, setSaved] = useState(isSaved);
+
+  const handleButtonClick = async () => {
+    if (!saved) {
+      await saveMovie(movie.id);
+
+      if (onSave) {
+        onSave();
+      }
+
+      setSaved(true);
+    } else {
+      await unsaveMovie(movie.id);
+
+      if (onUnsave) {
+        onUnsave();
+      }
+
+      setSaved(false);
+    }
+  };
+
   return (
     <Card
       sx={{
@@ -67,17 +97,23 @@ export const MovieCard = ({ movie, isSaved }: MovieCardProps) => {
           variant="contained"
           fullWidth
           sx={{
-            backgroundColor: isSaved ? 'primary.main' : 'secondary.main',
+            backgroundColor: saved ? 'primary.main' : 'secondary.main',
             justifyContent: 'flex-start',
             borderRadius: '15px',
             ':hover': {
-              backgroundColor: isSaved ? 'primary.dark' : 'secondary.dark',
+              backgroundColor: saved ? 'primary.dark' : 'secondary.dark',
             },
           }}
           startIcon={<BooksIcon scale={22} />}
+          onClick={handleButtonClick}
         >
-          <Typography variant="button" textAlign="center" flex={1}>
-            {isSaved ? 'Remove' : 'Add to My Library'}
+          <Typography
+            variant="button"
+            textAlign="center"
+            flex={1}
+            marginRight={saved ? '22px' : 0}
+          >
+            {saved ? 'Remove' : 'Add to My Library'}
           </Typography>
         </Button>
       </CardActions>

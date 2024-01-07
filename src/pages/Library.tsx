@@ -27,7 +27,13 @@ export const Library = () => {
       </Grid>
       {movies.map((movie) => (
         <Grid item xs={4} md={4} key={movie.id}>
-          <MovieCard movie={movie} isSaved={false} />
+          <MovieCard
+            movie={movie}
+            isSaved={true}
+            onUnsave={() => {
+              setMovies((prev) => prev.filter((item) => item.id !== movie.id));
+            }}
+          />
         </Grid>
       ))}
     </Grid>
