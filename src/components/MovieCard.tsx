@@ -17,6 +17,7 @@ import { ReactComponent as PauseIcon } from '~/assets/pause.svg';
 import { ReactComponent as TriangleIcon } from '~/assets/triangle.svg';
 import { unsaveMovie, saveMovie } from '~/services/movies';
 import type { Movie } from '~/types/api';
+
 import { ConfirmModal } from './ConfirmModal';
 
 export interface MovieCardProps {
@@ -68,7 +69,7 @@ export const MovieCard = ({
       if (movie.reviewUrl) {
         setModalOpen(true);
       } else {
-        handleUnsave();
+        await handleUnsave();
       }
     }
   };
@@ -121,7 +122,7 @@ export const MovieCard = ({
           borderRadius: '10px',
           position: 'relative',
           border: 'none',
-          cursor: 'pointer',
+          cursor: reproducible && movie.reviewUrl ? 'pointer' : 'default',
           '.message': {
             opacity: 0,
           },
