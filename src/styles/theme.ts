@@ -14,8 +14,13 @@ export const theme = createTheme({
       fontWeight: 700,
     },
     subtitle1: {
-      fontSize: 25,
+      fontSize: 24,
       fontWeight: 400,
+    },
+    subtitle2: {
+      fontSize: 20,
+      fontWeight: 400,
+      lineHeight: 1.2,
     },
     body1: {
       fontSize: 16,
@@ -41,6 +46,10 @@ export const theme = createTheme({
     },
     secondary: {
       main: '#0ACF83',
+    },
+    grey: {
+      '100': '#868686',
+      '200': '#A1A1A1',
     },
   },
 });
